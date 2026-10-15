@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Harbour Ropes — clean fixture</title>
+<script>document.documentElement.classList.add('js')</script>
+<style>
+  :root { --bg: #f4f6f5; --surface: #e7ecea; --ink: #14201c; --muted: #4a5753; --accent: #0b5d4b; --accent-ink: #ffffff; --focus: #0b5d4b;
+    --field: #14201c; --field-ink: #eef2f0; --margin: clamp(1rem, 2.2vw, 2rem); --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+    --display: Georgia, "Times New Roman", serif; --text: Verdana, sans-serif; }
+  html, body { overflow-x: clip; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--text); font-size: 17px; line-height: 1.55; }
+  a { color: inherit; text-underline-offset: .18em; }
+  :focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+  .wordmark { white-space: nowrap; font-weight: 700; }
+  .bar { display: flex; gap: 12px; justify-content: space-between; align-items: center; padding: 16px var(--margin); }
+  .bar nav a { margin-left: 12px; display: inline-block; padding: 12px 4px; }
+  .btn { display: inline-block; background: var(--accent); color: var(--accent-ink); padding: 14px 22px; text-decoration: none; white-space: nowrap; min-height: 48px; box-sizing: border-box; transition: transform 140ms var(--ease-out); }
+  .btn:active { transform: scale(.97); }
+  .hero { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--margin); padding: 24px var(--margin) 120px; align-items: end; }
+  h1 { font-family: var(--display); font-weight: 700; font-size: clamp(3rem, 1rem + 7vw, 8rem); line-height: .95; letter-spacing: -.03em; margin: 0 0 24px; overflow-wrap: anywhere; min-width: 0; }
+  .hero img { width: 100%; height: 72vh; object-fit: cover; display: block; }
+  .lead { font-size: 1.3rem; line-height: 1.4; max-width: 30ch; margin: 0 0 28px; }
+  section { padding: 160px var(--margin); }
+  h2 { font-family: var(--display); font-size: clamp(2rem, 1.3rem + 3.2vw, 4rem); line-height: 1.05; margin: 0 0 24px; }
+  .split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--margin); align-items: center; }
+  .split img, .wide img { width: 100%; display: block; height: auto; }
+  p { max-width: 62ch; }
+  .field { background: var(--field); color: var(--field-ink); }
+  .list { font-family: var(--display); font-size: clamp(1.6rem, 1rem + 2.4vw, 3rem); line-height: 1.15; list-style: none; padding: 0; margin: 0; }
+  .list li { margin-bottom: 20px; }
+  .list small { display: block; font-family: var(--text); font-size: 1rem; color: var(--field-ink); opacity: .85; }
+  footer { padding: 120px var(--margin) 40px; }
+  footer .name { font-family: var(--display); font-size: clamp(3rem, 12vw, 12rem); line-height: .9; margin: 0; }
+  @media (prefers-reduced-motion: no-preference) {
+    html.js [data-reveal] { opacity: 0; transform: translateY(24px); }
+    html.js [data-reveal].is-in { opacity: 1; transform: none; transition: opacity 700ms var(--ease-out), transform 900ms var(--ease-out); transition-delay: calc(var(--i, 0) * 80ms); }
+  }
+  @media (max-width: 60rem) { .hero, .split { grid-template-columns: minmax(0, 1fr); } .hero img { height: 50vh; } }
+</style>
+</head>
+<body>
+<header class="bar"><a href="#" class="wordmark">Harbour Ropes</a><nav><a href="#ropes">Ropes</a><a href="#yard">The yard</a></nav></header>
+<main>
+<h1 data-reveal style="padding: 24px var(--margin) 0">Rope, laid by hand</h1>
+<div class="hero">
+  <div>
+    <p class="lead" data-reveal style="--i:1">Three-strand manila and hemp, laid on a 60-metre walk in the old harbour since the yard reopened.</p>
+    <a class="btn" href="#order" data-reveal style="--i:2">Order a coil</a>
+  </div>
+  <img src="p1.png" alt="Coils of manila rope on the walk" width="1200" height="800" data-reveal style="--i:1">
+</div>
+<section id="ropes" class="split">
+  <img src="p2.png" alt="The rope walk seen from its far end" width="1200" height="800" data-reveal>
+  <div><h2 data-reveal>Laid on the walk</h2><p data-reveal style="--i:1">Each coil is twisted along the full length of the walk, so a rope is never spliced to reach its length. Order by the metre, collect at the yard on Fridays.</p></div>
+</section>
+<section class="field">
+  <h2 data-reveal>What we lay</h2>
+  <ul class="list">
+    <li data-reveal>Manila, 12 mm <small>For moorings and rails, sold by the metre.</small></li>
+    <li data-reveal style="--i:1">Hemp, 8 mm <small>Soft in the hand, for bell ropes and garden work.</small></li>
+    <li data-reveal style="--i:2">Tarred marline <small>For whipping and seizing, on spools.</small></li>
+  </ul>
+</section>
+<section class="wide" id="yard">
+  <img src="p3.png" alt="The yard gate on the quay" width="1200" height="800" data-reveal>
+  <h2 data-reveal style="margin-top:32px">Open Fridays</h2>
+  <p data-reveal>The yard is open to visitors on Fridays from nine to four. Walk the length of the rope walk and watch a coil being laid.</p>
+  <img src="p4.png" alt="Hands finishing an eye splice" width="1200" height="800" data-reveal>
+</section>
+<section id="order"><h2 data-reveal>Order a coil</h2><p data-reveal>Write to the yard with the fibre, the thickness and the length you need. We reply with the price and a Friday for collection.</p><a class="btn" href="mailto:yard@example.org?subject=Coil%20order">Write to the yard</a></section>
+</main>
+<footer><p class="name">Harbour Ropes</p><p>Quay 4, open Fridays 9–4.</p></footer>
+<script>
+const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -12% 0px', threshold: 0.1 });
+document.querySelectorAll('[data-reveal]').forEach((el) => io.observe(el));
+const inView = () => document.querySelectorAll('[data-reveal]:not(.is-in)').forEach((el) => { if (el.getBoundingClientRect().top < innerHeight) el.classList.add('is-in'); });
+requestAnimationFrame(inView); setTimeout(inView, 1200); addEventListener('scrollend', inView); // everything already on screen arrives at once; a safety net if the observer never fires
+</script>
+</body>
+</html>

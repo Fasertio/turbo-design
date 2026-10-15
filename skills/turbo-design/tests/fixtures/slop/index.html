@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nexus — slop fixture</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;1,300&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; background: #faf9f5; color: #3d3929; font-family: Inter, sans-serif; font-size: 14px; }
+  header { display: flex; justify-content: space-between; padding: 20px 40px; border-bottom: 1px solid #e8e6dc; }
+  .eyebrow { font-size: 11px; text-transform: uppercase; letter-spacing: .14em; color: #d97757; }
+  h1 { font-family: Fraunces, serif; font-weight: 300; font-size: 72px; text-align: center; max-width: 900px; margin: 0 auto; }
+  h1 em { color: #d97757; font-style: italic; }
+  .hero { text-align: center; padding: 120px 20px; height: 100vh; background: linear-gradient(135deg, #6366f1, #a855f7); }
+  .hero p { text-align: center; }
+  .btn { background: linear-gradient(90deg,#d97757,#c15f3c); color: #fff; padding: 14px 22px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,.2); display: inline-block; }
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; padding: 80px 40px; }
+  .card { background: #fff; border-radius: 16px; padding: 28px; box-shadow: 0 4px 20px rgba(0,0,0,.06); border-left: 4px solid #d97757; }
+  .card .inner { background: #f5f4ed; border-radius: 12px; padding: 16px; border: 1px solid #e8e6dc; min-height: 60px; }
+  .icon { width: 40px; height: 40px; border-radius: 10px; background: #f0eee6; display: grid; place-items: center; }
+  .num { font-family: ui-monospace, monospace; color: #d97757; }
+  .ph { width: 400px; height: 260px; background: #ddd; border: 2px dashed #aaa; margin: 40px; }
+  .grad { background: linear-gradient(90deg, #6366f1, #ec4899); -webkit-background-clip: text; background-clip: text; color: transparent; font-size: 40px; }
+  .dots span { display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #f87171; margin-right: 6px; }
+  .tiny { font-size: 11px; }
+  html, body { overflow-x: clip; }
+  .toowide { width: 1700px; font-size: 18px; }
+  .unrevealed { clip-path: inset(0 0 100% 0); font-size: 18px; }
+</style>
+</head>
+<body>
+<header><strong>Nexus</strong><nav><a href="#">Features</a> <a href="#">Pricing</a> <a href="#">About</a></nav><a class="btn" href="#">Get started</a></header>
+<section class="hero">
+  <div class="eyebrow">✨ New · Introducing Nexus AI</div>
+  <h1>Unlock the future of <em>seamless</em> workflows for modern teams everywhere today</h1>
+  <p>Trusted by 10,000+ teams. Supercharge your productivity with our all-in-one, cutting-edge platform — 10x faster.</p>
+  <a class="btn" href="#">Learn more</a>
+</section>
+<section class="cards">
+  <div class="card"><div class="icon"><svg width="20" height="20"><circle cx="10" cy="10" r="8"/></svg></div><span class="num">01</span><h3>Lightning fast</h3><p>Blazing fast performance that scales with you effortlessly every day.</p><div class="inner">Nested inner card content here</div></div>
+  <div class="card"><div class="icon"><svg width="20" height="20"><circle cx="10" cy="10" r="8"/></svg></div><span class="num">02</span><h3>Secure by default</h3><p>Robust, enterprise-grade security built for the modern era of work.</p><div class="inner">Nested inner card content here</div></div>
+  <div class="card"><div class="icon"><svg width="20" height="20"><circle cx="10" cy="10" r="8"/></svg></div><span class="num">03</span><h3>Seamless sync</h3><p>Seamlessly integrate with every tool your team already loves using.</p><div class="inner">Nested inner card content here</div></div>
+</section>
+<div class="ph">Image placeholder</div>
+<div class="dots"><span></span><span></span><span></span></div>
+<p class="grad">Gradient text headline</p>
+<p class="tiny">Lorem ipsum dolor sit amet, consectetur adipiscing elit, a tiny legal line under eleven pixels long enough.</p>
+<p class="tiny">Another tiny line of text set far too small to be read by anyone comfortably at all.</p>
+<p class="tiny">A third tiny line so the small text rule triggers, written to be over twelve characters.</p>
+<p class="tiny">A fourth tiny line so the small text rule triggers as a failure not a warning here.</p>
+<img src="missing.jpg">
+<p class="toowide">A row of text that runs far past the right edge of the screen and is cut off for every visitor.</p>
+<p class="unrevealed">This paragraph waits for a reveal that never fires.</p>
+</body>
+</html>

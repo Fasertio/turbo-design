@@ -1,0 +1,4 @@
+skills/turbo-design/tests/.out/
+skills/turbo-design/tests/fixtures/clean/*.png
+.turbo/
+node_modules/
