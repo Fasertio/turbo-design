@@ -1,54 +1,64 @@
+<p align="center">
+  <img src=".github/banner.png" alt="turbo-design: AI-powered UI design, no slop." width="100%">
+</p>
+
+<p align="center">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT license"></a>
+  <img src="https://img.shields.io/badge/node-%E2%89%A522-339933.svg" alt="Node 22 or later">
+  <img src="https://img.shields.io/badge/dependencies-none-lightgrey.svg" alt="No dependencies">
+</p>
+
 # turbo-design
 
-A design skill for coding agents that builds web interfaces without the generated look, and checks the result in a real browser before calling it done.
+turbo-design is a skill for coding agents. It helps them build web interfaces that don't look generated, and it checks the result in a real browser before the agent is allowed to call the job done.
 
-Ask an agent for a landing page and you usually get the same page: a cream background with a rust-coloured button, one italic word in the headline, a small uppercase label above every heading, numbered steps 01 to 04, a row of three icon cards, thin dividers everywhere. Nothing in it is broken. Nothing in it was decided.
+You've probably seen the page I'm talking about. Ask an agent for a landing page and you get a cream background, a rust-coloured button, one italic word in the headline, a tiny uppercase label over every heading, steps numbered 01 to 04, three icon cards in a row and thin dividers everywhere. Nothing is broken. Nobody decided any of it, either.
 
-turbo-design replaces those defaults with decisions taken from the subject itself, and then measures the page to make sure the defaults did not come back.
+This skill makes the agent take its decisions from the subject it's designing for, and then measures the page to check that the old defaults haven't crept back in.
 
 ## How it works
 
-The skill guides the agent through a fixed sequence:
+The agent follows the same sequence every time:
 
-1. **Read what is real.** List 8 to 12 things that belong to this client and to no competitor: its name, its place, its numbers, its constraints, the printed things of its world. Look at how the best products in the category handle the first screen.
-2. **Write the argument and the copy first.** Each section exists because it proves a claim. The full text is written before any markup. Numbers, quotes and logos come from the brief or not at all.
-3. **Choose a direction.** Three directions are written in words, at least one dealt at random from a research library of 20 art directions, 48 hero layouts and 172 section blueprints, so the agent cannot fall back on its favourite look. Each must pass a difference test and a competitor test ("would this idea still work for the shop down the road?"). A project log stops two builds from sharing the same fingerprint.
-4. **Build it still.** Tokens first, then the first screen, then each section. Real pictures (the client's own, generated, or openly licensed archive images with credits), never grey placeholder boxes.
-5. **Gate it mechanically.** A linter scans the source; an inspector renders the page in Chrome or Edge and measures it.
-6. **Add motion**, then check again.
-7. **Review it in isolation.** A fresh subagent that never saw the code looks only at screenshots, lists everything that still reads as generated, and scores the page against a fixed rubric. Up to three rounds.
-8. **Subtract and report**, including every check that was not run.
+1. It starts from what's real. Before designing anything it lists 8 to 12 things that belong to this client and no competitor: the name, the place, the numbers, the constraints, the printed stuff of that world. It also looks at how the best products in the category handle their first screen.
+2. It writes the argument and the copy before any markup. Every section has to prove a claim. Numbers, quotes and logos come from the brief, and if the brief doesn't have them, they don't appear.
+3. It picks a direction. The agent writes three directions in words, and at least one is dealt at random from a research library (20 art directions, 48 hero layouts, 172 section blueprints), so it can't fall back on its favourite look. Each one has to pass a difference test and a competitor test: would this idea still work for the shop down the road? A project log keeps two builds from ending up with the same fingerprint.
+4. It builds the static page: tokens first, then the first screen, then one section at a time. Pictures are real ones (the client's, generated, or openly licensed archive images with credits). Grey placeholder boxes aren't allowed.
+5. A linter scans the source, and an inspector renders the page in Chrome or Edge and measures it.
+6. Motion goes in next, and the checks run again.
+7. A fresh subagent that has never seen the code reviews screenshots only. It lists everything that still looks generated and scores the page against a fixed rubric, for up to three rounds.
+8. Finally the agent cuts what isn't needed and writes a report, which includes every check it didn't run.
 
 ## What the checks catch
 
-The inspector runs the page at four widths (1440, 768, 390 and 320 px for pages), scrolls it screen by screen, presses Tab through the controls, reloads it with JavaScript disabled and again with reduced motion. It reports around 70 rules in three tiers:
+The inspector renders pages at 1440, 768, 390 and 320 px. It scrolls through one screen at a time, tabs through every control, then reloads with JavaScript off and again with reduced motion. There are around 70 rules, in three tiers:
 
-| Tier | Meaning | Examples |
+| Tier | What it means | Examples |
 | --- | --- | --- |
-| Hard ban | Never shipped, cannot be overridden | cream with terracotta, violet accents, gradient text, a styled accent word in a headline, labels above headings, rows of icon cards, nested cards, placeholder text or boxes, content that never appears, invisible keyboard focus, horizontal overflow |
-| Licensed | Banned by default, allowed when the subject truly owns it and the reason is written down (three at most) | thin rules for a timetable, monospace for a developer tool, numbering for a real sequence |
-| Warning | Usually wrong, needs a one-line justification | centred hero stack, one 12 px radius on everything, more than eight type sizes, stock phrases |
+| Hard ban | Never ships, no override | cream with terracotta, violet accents, gradient text, a styled accent word in a headline, labels above headings, rows of icon cards, nested cards, placeholder text or boxes, content that never appears, invisible keyboard focus, horizontal overflow |
+| Licensed | Banned by default, allowed (three at most) when the subject really owns it and the reason is written down | thin rules for a timetable, monospace for a developer tool, numbering for a real sequence |
+| Warning | Usually wrong, needs a one-line justification | centred hero stack, the same 12 px radius on everything, more than eight type sizes, stock phrases |
 
-Product screens get their own rules: rainbow status pills, initials avatars in candy colours, rows of KPI cards with green and red deltas.
+Product screens have their own rules on top: rainbow status pills, initials avatars in candy colours, rows of KPI cards with green and red deltas.
 
 ## Requirements
 
-- A coding agent that supports skills (Claude Code, or any agent that reads a `SKILL.md` folder)
+- A coding agent that supports skills: Claude Code, or any agent that reads a `SKILL.md` folder
 - Node.js 22 or later
-- Chrome, Edge or Chromium installed (set `CHROME_PATH` if it lives somewhere unusual)
-- Network access for web fonts and the image search (optional)
+- Chrome, Edge or Chromium (set `CHROME_PATH` if yours is somewhere unusual)
+- Network access for web fonts and image search, if you want them
 
-No npm packages are installed. Every script uses only the Node standard library.
+There's nothing to `npm install`. The scripts only use the Node standard library.
 
 ## Installation
 
-Clone the repository and copy the skill folder into your agent's skills directory.
+Clone the repo:
 
 ```bash
 git clone https://github.com/Fasertio/turbo-design.git
 ```
 
-**Claude Code, for every project (personal skill):**
+Then copy the skill folder into your agent's skills directory. For Claude Code, a personal skill works in every project:
 
 ```bash
 # macOS / Linux
@@ -58,21 +68,21 @@ cp -r turbo-design/skills/turbo-design ~/.claude/skills/
 Copy-Item -Recurse turbo-design\skills\turbo-design $HOME\.claude\skills\
 ```
 
-**Claude Code, for one project only:** copy the folder to `.claude/skills/turbo-design` inside that project.
+If you only want it in one project, copy it to `.claude/skills/turbo-design` inside that project instead.
 
-Restart the agent so it picks up the skill. If you have other design skills installed, disable them while you use this one; overlapping instructions produce mixed results.
+Restart the agent so it picks up the skill. If you have other design skills installed, turn them off while you use this one, because overlapping instructions give mixed results.
 
-Check that the tools work on your machine:
+To check that the tools run on your machine:
 
 ```bash
 node ~/.claude/skills/turbo-design/tests/run.mjs
 ```
 
-All checks should pass. The test renders a deliberately bad page that must be rejected and a clean page that must pass.
+Everything should pass. The test renders a deliberately bad page, which has to be rejected, and a clean one, which has to pass.
 
 ## Usage
 
-You do not need to call the skill by name. Ask for interface work and the agent loads it:
+You don't have to call the skill by name. Ask for interface work and the agent loads it on its own:
 
 ```text
 Build a one-page site for a rope workshop in Genoa. The main action is ordering a coil.
@@ -81,21 +91,21 @@ Audit this landing page and tell me why it looks AI-made. Do not change anything
 Build the order queue screen for our warehouse dashboard.
 ```
 
-In an interactive session the agent proposes three directions and waits for your choice. If you say "just build it", it picks one, tells you which and why, and continues.
+In an interactive session the agent proposes three directions and waits for you to choose. Say "just build it" and it picks one itself, tells you which and why, and carries on.
 
-When it finishes, the agent reports the direction it chose, the idea behind it, the inspector result, the review scores and anything it could not verify.
+At the end you get the chosen direction and the idea behind it, the inspector result, the review scores, and a list of anything it couldn't verify.
 
 ### Surfaces
 
-| Profile | For | Differences |
+| Profile | For | What changes |
 | --- | --- | --- |
-| `page` | Landing pages, brand sites, portfolios, event pages | Requires real pictures, a dominant first screen and a motion layer |
-| `app` | Dashboards, admin screens, tools, tables, forms | Workspace-first layout, density rules, status and data rules; no picture or motion quotas |
-| `component` | A single button, input, card, modal | All interaction states rendered on one preview page |
+| `page` | Landing pages, brand sites, portfolios, event pages | Real pictures, a dominant first screen and a motion layer are required |
+| `app` | Dashboards, admin screens, tools, tables, forms | Workspace-first layout with density, status and data rules; no picture or motion quotas |
+| `component` | A single button, input, card or modal | Every interaction state rendered on one preview page |
 
-### Running the tools directly
+### Running the tools yourself
 
-The scripts are useful on their own, for example to audit an existing page:
+The scripts work fine without the agent, for example to audit a page you already have:
 
 ```bash
 SKILL=~/.claude/skills/turbo-design
@@ -108,9 +118,9 @@ node $SKILL/scripts/deal.mjs --sector restaurant --brief "a 30-seat fish restaur
 node $SKILL/scripts/assets.mjs "genoa harbour 1920"       # openly licensed pictures, with credits
 ```
 
-Results go to `.turbo/` in the current directory: screenshots at every width, a review kit (480 px thumbnails and text-masked versions) and a `report.json`. Exit code 0 means no failures, 1 means at least one.
+Output lands in `.turbo/` in the current directory: screenshots at every width, a review kit (480 px thumbnails plus versions with the text masked) and a `report.json`. The exit code is 0 when nothing failed and 1 when at least one rule did.
 
-A project can record its decisions in `.turbo/direction.json`: the surface profile, licensed devices with their reasons, brand-owned colours and the facts confirmed by the brief. The format is documented in `skills/turbo-design/references/tools.md`.
+A project can keep its decisions in `.turbo/direction.json`: the surface profile, licensed devices and the reasons for them, brand-owned colours and the facts the brief confirmed. The format is described in `skills/turbo-design/references/tools.md`.
 
 ## Repository layout
 
@@ -126,11 +136,11 @@ skills/turbo-design/
 
 ## Limitations
 
-- The checks find what generated pages have in common. They do not make a page good; the isolated review is there for that, and it is still a model judging screenshots.
-- A full run takes time: several inspector passes and up to three review rounds. Use `--quick` while iterating.
-- Font and image downloads need network access. Offline, fonts fall back and the screenshots will not match the design.
-- The review step needs an agent that can start subagents. Without one, the agent reviews its own work and says so in the report.
+- The checks look for what generated pages have in common. Passing them doesn't make a page good. That's what the isolated review is for, and the review is still a model looking at screenshots.
+- A full run is slow: several inspector passes and up to three review rounds. Use `--quick` while you iterate.
+- Fonts and images need network access. Offline, fonts fall back and the screenshots won't match the design.
+- The review step needs an agent that can start subagents. Without that, the agent reviews its own work and says so in the report.
 
 ## License
 
-MIT. See [LICENSE](LICENSE).
+MIT, see [LICENSE](LICENSE).
